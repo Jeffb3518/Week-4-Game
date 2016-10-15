@@ -15,7 +15,7 @@ $(document).ready(function() {
 	function newCrystal() {
 		var numbers = []
 			while(numbers.length < 4) {
-				var randomNumber = Math.ceil(Math.random()*12)
+				var randomNumber = Math.floor(Math.random()*15)
 				var there = false;
 				for (var i=0; i<numbers.length; i++){
 					if (numbers[i] == randomNumber){
@@ -35,5 +35,21 @@ $(document).ready(function() {
 			$('#crystals').append(imageCrystal);
 		}
 	}
-		
+
+	function nextGame {
+
+		counter = 0;
+		$('#score').text(counter);
+
+		function randomIntFromInterval(min,max) {
+			return Math.floor(Math.random()*(max-min+1)+min);
+		}
+
+	var winningNumber = randomIntFromInterval(21, 115);
+
+	$('.start').text(winningNumber);
+
+
+	}
+
 }
