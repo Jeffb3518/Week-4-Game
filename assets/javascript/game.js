@@ -1,55 +1,92 @@
 $(document).ready(function() {
 
-	crystals = ['assets/images/yellow.png', 'assets/images/blue.png', 'assets/images/green.png', 'assets/images/red.png'];
+var ranNum;
+var win = 0;
+var loss= 0;
+var score = ""; 
+var green;
+var yellow;
+var red;
+var blue;
 
-	var score = 0;
-	var wins = 0;
-	var losses = 0;
 
-	$('#win').text(total wins);
-	$('#loss').text(total losses);
 
-	newCrystal();
-	nextGame();
 
-	function newCrystal() {
-		var numbers = []
-			while(numbers.length < 4) {
-				var randomNumber = Math.floor(Math.random()*15)
-				var there = false;
-				for (var i=0; i<numbers.length; i++){
-					if (numbers[i] == randomNumber){
-						there = true; break
-					}
-				}
-				if(!there)numbers[numbers.length]=randomNumber
-			}
-		console.log(numbers);
+function gameStart() {
 
-		for (i=0; i<numbers.length; i++) {
-			var imageCrystal = $('<img>');
-			imageCrystal.attr('data-num', numbers[i]);
-			imageCrystal.attr('src', crystals[i]);
-			imageCrystal.attr('alt', 'crystals');
-			imageCrystal.addClass('crystalImage')
-			$('#crystals').append(imageCrystal);
-		}
+	ranNum =  Math.floor(Math.random() * 56) + 17; ;
+	green = Math.floor(Math.random() * 11) + 1 ;
+	yellow = Math.floor(Math.random() * 11) + 1 ;
+	red = Math.floor(Math.random() * 11) + 1 ;
+	blue = Math.floor(Math.random() * 11) + 1 ;
+
+	score = 0;
+	$('#score').html(score);
+	$('.start').html(ranNum);			
+}
+
+gameStart();
+
+
+$('#win').html(win);
+$('#loss').html(loss);
+	
+
+	$(".green").on("click", function(){					 
+		
+		score += green
+		$('#score').html(score);
+		decider();
+
+
+	});
+
+	$(".yellow").on("click", function(){					
+
+		score += yellow
+		$('#score').html(score);
+		decider();
+
+
+	});
+
+	$(".red").on("click", function(){					
+
+		score += red
+		$('#score').html(score);
+		decider();
+
+
+	});
+
+	$(".blue").on("click", function(){					
+
+		score += blue
+		$('#score').html(score);
+		decider();
+
+	});
+
+});
+
+console.log(ranNum);
+console.log(score);
+
+function decider(){
+
+	if(score > ranNum) {
+
+		loss++
+		$('#loss').html(loss);
+		gameStart();
+
 	}
 
-	function nextGame {
+	else if(score == ranNum) {
 
-		counter = 0;
-		$('#score').text(counter);
-
-		function randomIntFromInterval(min,max) {
-			return Math.floor(Math.random()*(max-min+1)+min);
-		}
-
-	var winningNumber = randomIntFromInterval(21, 115);
-
-	$('.start').text(winningNumber);
-
-
+		win++
+		$('#win').html(win)
+		gameStart();
 	}
 
 }
