@@ -5,7 +5,7 @@ var score = 0;
 var win = 0;
 var loss = 0;
 
-$('#win').text(wins);
+$('#win').text(win);
 $('#loss').text(loss);
 
 $('.start').text(winningNumber);
@@ -13,20 +13,30 @@ $('.start').text(winningNumber);
 
       var imageCrystal = $('<img>');
       imageCrystal.attr('data-num', numbers[i]);
-      imageCrystal.attr('src',);
       imageCrystal.attr('alt', 'crystals');
       imageCrystal.addClass('crystalImage');
       $('#crystals').append(imageCrystal);
     }
 
+ function startGame {
 
+    score = 0
+
+    $('#score').text(score);
+    	function randomIntFromInterval (min,max) {
+    		return Math.floor(Math.random()* (max-min+1)+1);
+    		}
+
+    	var winningNumber = randomIntFromInterval (25, 99);
+
+    	$('.start').text(winningNumber);
+    }
 
   $('#crystalImage').on('click', function(){
 		score = score + parseInt($(this).data('num'));
 		   
-		    $('#score').text(counter);
 
-		    if (counter == winningNumber){
+		    if (score == winningNumber){
 		      alert ('You Won!');
 		      wins ++;
 		      $('#win').text(win);
@@ -34,14 +44,16 @@ $('.start').text(winningNumber);
 		      $('#crystals').empty();
 		     
 		        
-		    } else if ( counter > numberToGuess){
-		        alert ('You Lost!');
-		        loss ++;
-		        $('#loss').text(loss);
-		        console.log(loss)
-		        $('#crystals').empty();
+		    } 
+
+		    else if ( score > winningNumber){
+		       alert ('You Lost!');
+		       loss ++;
+		       $('#loss').text(loss);
+		       console.log(loss)
+		       $('#crystals').empty();
 		    }
-		});
+		}
 	}
 
 });
