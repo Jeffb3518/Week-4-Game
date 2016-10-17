@@ -20,7 +20,7 @@ $('.start').text(winningNumber);
 
  function startGame {
 
-    score = 0
+     score = 0
 
     $('#score').text(score);
     	function randomIntFromInterval (min,max) {
