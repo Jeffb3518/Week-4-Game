@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-var winningNumber;
+var winningNumber= "";
 var score = 0;
 var win = 0;
 var loss = 0;
@@ -33,7 +33,7 @@ $('.start').text(winningNumber);
     }
 
   $('#crystalImage').on('click', function(){
-		score = score + parseInt($(this).data('num'));
+	score = score + parseInt($(this).data('num'));
 		   
 
 		    if (score == winningNumber){
